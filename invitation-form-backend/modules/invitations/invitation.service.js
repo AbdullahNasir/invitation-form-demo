@@ -1,11 +1,14 @@
 const Invitations = require('./invitation.model');
-const { HttpException } = require('../../services/error');
-const { sendEmail } = require('../../services/nodemailer');
-const { INVITATION_ERRORS } = require('../../error-code');
+const {
+  HttpException
+} = require('../../services/error');
+const {
+  sendEmail
+} = require('../../services/nodemailer');
+const {
+  INVITATION_ERRORS
+} = require('../../error-code');
 
-module.exports = {
-  bulkInvite
-};
 
 async function findByEmails(emails) {
   try {
@@ -78,4 +81,8 @@ const saveInvitation = async email => {
   } catch (err) {
     throw new HttpException(400, err);
   }
+};
+
+module.exports = {
+  bulkInvite
 };

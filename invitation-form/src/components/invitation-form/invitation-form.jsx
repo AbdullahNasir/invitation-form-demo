@@ -66,7 +66,9 @@ class InvitationForm extends Component {
           onChange={this.handleBulkEmailChange}
           className="form-control"
           rows="5"
-        ></textarea>
+        >
+          {this.state.emails.join(",")}
+        </textarea>
       </React.Fragment>
     );
   }
@@ -170,6 +172,10 @@ class InvitationForm extends Component {
 
     for (let i = 0; i < emails.length; i++) {
       if (!emails[i].length) {
+        // not invalidating the form because the field might
+        // untouched according the to 2nd last point of the
+        // acceptance criteria it is possible for a user
+        // to submit the form without entering anything in the textbox
         continue;
       }
       if (!this.validateEmail(emails[i])) {
